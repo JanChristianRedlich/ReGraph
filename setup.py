@@ -9,7 +9,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='regraph',
-    version='2.0.4',
+    version='2.0.5',
     description='Graph rewriting and graph-based knowledge representation framework',
     author='Eugenia Oshurko',
     author_email='yarutoua@gmail.com',
@@ -37,7 +37,7 @@ setuptools.setup(
         "pyparsing",
         "lrparsing",
         "sympy",
-        "greenery==2.0",
+        "greenery",
         "neo4j-driver==1.7.4",
         "neobolt"
     ]
