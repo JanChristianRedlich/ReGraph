@@ -9,7 +9,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='regraph',
-    version='2.0.1',
+    version='2.0.2',
     description='Graph rewriting and graph-based knowledge representation framework',
     author='Eugenia Oshurko',
     author_email='yarutoua@gmail.com',
@@ -32,7 +32,7 @@ setuptools.setup(
     python_requires='>=3.6',
     install_requires=[
         "matplotlib",
-        "networkx",
+        "networkx==1.11",
         "numpy",
         "pyparsing",
         "lrparsing",
