@@ -62,7 +62,7 @@ class NXGraph(Graph):
         n : hashable
             Node id.
         """
-        return self._graph.nodes[n]
+        return [item for item in self._graph.nodes(data=True) if item[0] == n][0][1]
 
     def get_edge(self, s, t):
         """Get edge attributes.
@@ -181,9 +181,12 @@ class NXGraph(Graph):
             if normalize is True:
                 normalize_attrs(new_attrs)
             attrs_to_remove = set()
-            for k in self._graph.nodes[node_id].keys():
+            
+            for k in [item for item in self._graph.nodes(data=True) if item[0] == node_id][0][1].keys():
                 if k not in new_attrs.keys():
                     attrs_to_remove.add(k)
+
+
             self._graph.add_node(node_id, **new_attrs)
             for k in attrs_to_remove:
                 del self._graph.nodes[node_id][k]

@@ -446,16 +446,16 @@ class RegexSet(AttributeSet):
         if self.pattern is None:
             return True
         else:
-            self_exp = parse(self.pattern)
+            self_exp = parse.parse(self.pattern)
 
             def included(a):
                 if isinstance(a, str):
-                    other_exp = parse(a)
+                    other_exp = parse.parse(a)
                 elif isinstance(a, re._pattern_type):
-                    other_exp = parse(a.pattern)
+                    other_exp = parse.parse(a.pattern)
                 elif isinstance(a, RegexSet):
                     if a.pattern:
-                        other_exp = parse(a.pattern)
+                        other_exp = parse.parse(a.pattern)
                     else:
                         return False
                 else:
@@ -587,7 +587,7 @@ class RegexSet(AttributeSet):
                 else:
                     return other_obj
 
-        self_exp = parse(self.pattern)
+        self_exp = parse.parse(self.pattern)
 
         other_exp = []
         if isinstance(other, set):
@@ -595,7 +595,7 @@ class RegexSet(AttributeSet):
                 exp_str = _regex_to_string(exp)
                 if exp_str is None:
                     return RegexSet.empty()
-                other_exp.append(parse(exp_str))
+                other_exp.append(parse.parse(exp_str))
         elif isinstance(other, UniversalSet):
             return copy.deepcopy(self)
         elif isinstance(other, EmptySet):
@@ -604,7 +604,7 @@ class RegexSet(AttributeSet):
             other_str = _regex_to_string(other)
             if other_str is None:
                 return RegexSet.empty()
-            other_exp.append(parse(other_str))
+            other_exp.append(parse.parse(other_str))
 
         intersect_exp = self_exp
         for exp in other_exp:
@@ -649,14 +649,14 @@ class RegexSet(AttributeSet):
             for exp in other:
                 exp_str = _regex_to_string(exp)
                 if exp_str is not None:
-                    other_exp.append(parse(exp_str))
+                    other_exp.append(parse.parse(exp_str))
         else:
             other_str = _regex_to_string(other)
             if other_str is not None:
-                other_exp.append(parse(other_str))
+                other_exp.append(parse.parse(other_str))
             else:
                 return self.copy()
-        complement_exp = parse(self.pattern)
+        complement_exp = parse.parse(self.pattern)
         for exp in other_exp:
             complement_exp = complement_exp.difference(exp)
 

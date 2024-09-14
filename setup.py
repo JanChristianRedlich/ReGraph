@@ -32,7 +32,7 @@ setuptools.setup(
     python_requires='>=3.6',
     install_requires=[
         "matplotlib",
-        "networkx==1.11",
+        "networkx", #==1.11",
         "numpy",
         "pyparsing",
         "lrparsing",
